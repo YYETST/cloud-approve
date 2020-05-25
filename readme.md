@@ -14,15 +14,9 @@ rest.token
 
 #### token怎么获得？
 
-<div align=center>
-<img src="/src/main/resources/images/1.png"/>
-</div>
-<p align="center">图 1</p>
-
-<div align=center>
-<img src="/src/main/resources/images/2.png"/>
-</div>
-<p align="center">图 2</p>
+```
+src/main/resources/images下的【1,2】图片
+```
 
 ## 第三步，调用测试类测试
 
