@@ -18,6 +18,13 @@ rest.token
 src/main/resources/images下的【1,2】图片
 ```
 
+#### 第三步 查看ProcDefId
+
+```
+src/main/resources/images下的【3】图片
+
+```
+
 ## 第三步，调用测试类测试
 
 ```

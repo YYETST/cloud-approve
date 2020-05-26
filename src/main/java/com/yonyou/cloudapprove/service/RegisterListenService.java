@@ -35,6 +35,7 @@ public class RegisterListenService extends BaseService{
         return result;
     }
 
+
     /**
      * 查询监听流程
      * @param params
@@ -55,6 +56,19 @@ public class RegisterListenService extends BaseService{
         DefaultIdentityService identityService = new DefaultIdentityService();
         identityService.setBaseParam(getBaseParam());
         Object result = identityService.updateBasicData(params);
+        return result;
+    }
+
+    /**
+     * 删除监听
+     * @param id
+     * @return
+     * @throws RestException
+     */
+    public boolean delete(String id) throws RestException {
+        DefaultIdentityService identityService = new DefaultIdentityService();
+        identityService.setBaseParam(getBaseParam());
+        boolean result = identityService.deleteBasicData(id);
         return result;
     }
 

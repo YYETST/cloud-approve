@@ -60,11 +60,20 @@ class ApproveListenTest {
         params.setName("海康门卫监听");
         params.setUrl("http://310l2268a8.wicp.vip/approve/listen");
         //流程id为：租户Id+source
+        params.setProcDefId("iform_3e41d17055");   //---获取方式请看images/3.png
         params.setTenantId(teant);
         params.setSource(source);
         params.setToken(token);
         ObjectNode object = (ObjectNode)registerListenService.register(params);
         System.out.println("这是注册监听返回的json数据:"+ object.toString());
+    }
+
+
+    @Test
+    public void deleteListen() throws RestException {
+        String id="ec0a040d-9f2f-11ea-9458-9aa2e21290bb";
+        boolean result = registerListenService.delete(id);
+        System.out.println("这是删除监听返回的数据:"+ result);
     }
 
     /**
@@ -81,8 +90,8 @@ class ApproveListenTest {
     @Test
     public void update() throws RestException {
         BasicDataResourceParam basicData = new BasicDataResourceParam();
-        basicData.setId("4adcb621-9bf6-11ea-b2cd-9e4f8041e636");
-        basicData.setTenantId(teant);
+        basicData.setId("d569cc3a-9f28-11ea-9458-9aa2e21290bb");
+        basicData.setProcDefId("iform_3e41d17055:1:9267b1fe-9e46-11ea-9458-9aa2e21290bb");
         ObjectNode object = (ObjectNode)registerListenService.update(basicData);
         System.out.println("这是修改监听返回的json数据:"+ object.toString());
     }
