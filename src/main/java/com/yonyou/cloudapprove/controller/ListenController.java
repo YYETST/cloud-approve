@@ -21,7 +21,7 @@ public class ListenController {
 
     @PostMapping("/approve/listen")
     public JSONObject approveContent(@RequestBody JSONObject request) {
-        System.out.println(request.toString());  //request 会返回：businessKey  processDefinitionKey
+        System.out.println(request.toString());  //request 会返回：businessKey
         System.out.println(222+"--------------------");
         Map<String,Object> result = new HashMap<String,Object>();
         result.put("msgSuccess",true);

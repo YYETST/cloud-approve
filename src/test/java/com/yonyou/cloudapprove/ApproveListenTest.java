@@ -46,8 +46,7 @@ class ApproveListenTest {
         BasicdataQueryParam queryParam = new BasicdataQueryParam();
         queryParam.setTenantId(teant);
         ObjectNode result = (ObjectNode) registerListenService.select(queryParam);
-        ArrayNode node = (ArrayNode) result.get("data");
-        System.out.println("这是查询云审监听返回的json数据:"+ node.get(0).toString());
+        System.out.println("这是查询云审监听返回的json数据:"+ result.toString());
     }
 
     /**

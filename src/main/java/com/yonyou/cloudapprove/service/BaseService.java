@@ -2,6 +2,7 @@ package com.yonyou.cloudapprove.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import yonyou.bpm.rest.param.BaseParam;
+import yonyou.bpm.rest.request.form.IFormDataQueryParam;
 
 /**
  * @author nishch
@@ -28,5 +29,20 @@ public class BaseService {
         baseParam.setClientToken(approveToken);
         baseParam.setSource(source);
         return baseParam;
+    }
+
+    public IFormDataQueryParam getPkBoAndBoins(String businessKey){
+        IFormDataQueryParam param =new IFormDataQueryParam();
+        String[] pks = businessKey.split(":");
+        param.setPkBo(pks[1]);
+        param.setPkBoins(pks[0]);
+        return param;
+    }
+
+    public IFormDataQueryParam getPkBo(String businessKey){
+        IFormDataQueryParam param =new IFormDataQueryParam();
+        String[] pks = businessKey.split(":");
+        param.setPkBo(pks[1]);
+        return param;
     }
 }
