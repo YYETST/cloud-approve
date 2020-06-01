@@ -53,7 +53,7 @@ public class BillService extends BaseService{
      */
     public Object getBillParams(String businessKey) throws RestException {
         FormFieldQueryParam formFieldQueryParam=new FormFieldQueryParam();
-        formFieldQueryParam.setFieldId(getPkBo(businessKey).getPkBo());
+        formFieldQueryParam.setFormId(getPkBo(businessKey).getPkBo());
         return getFormService().queryFormFields(formFieldQueryParam);
     }
 

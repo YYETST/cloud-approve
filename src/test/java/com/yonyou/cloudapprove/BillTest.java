@@ -60,7 +60,7 @@ class BillTest {
         List<IFormSubmitData> list = new ArrayList<IFormSubmitData>();
         IFormSubmitData updateData = new IFormSubmitData();
         //修改一个附件 -------------------
-        //附件字段名
+        //附件字段名   ----获取审批流附件会返回key
         updateData.setColumnCode("fj_1590733790029381");
         List<FileEntity>  fileEntities = new ArrayList<FileEntity>();
         FileEntity fileEntity= new FileEntity();
@@ -79,4 +79,36 @@ class BillTest {
     }
 
 
+
+    /**
+     * 获取表单字段
+     */
+    @Test
+    public void getBillParam() throws RestException {
+        ObjectNode result = (ObjectNode) billService.getBillParams("71c1ace9d4a6422f85244d44ee4e673a:bea0303d91b94f91bb71169ec431b5b5");
+        System.out.println("这是查询表单字段返回的json数据:"+ result.toString());
+    }
+
+    /**
+     * 修改表单数据 --非文件
+     *
+     */
+    @Test
+    public void updateBillData() throws RestException, IOException {
+        IFormSubmitParam param = new IFormSubmitParam();
+        String businessKey = "9377535fec78427baf035441eab7a0da:bea0303d91b94f91bb71169ec431b5b5";
+        IFormDataQueryParam queryParam = billService.getPkBoAndBoins(businessKey);
+        param.setPkBo(queryParam.getPkBo());
+        param.setPkBoins(queryParam.getPkBoins());
+        List<IFormSubmitData> list = new ArrayList<IFormSubmitData>();
+        IFormSubmitData updateData = new IFormSubmitData();
+        //修改一个附件 -------------------
+        //附件字段名   ----获取审批流附件会返回key
+        updateData.setFieldId("3dabe73c9f894676932dfe45978ea234");
+        updateData.setValue("nscer");
+        list.add(updateData);
+        param.setFormData(list);
+        String result = billService.updateBill(param);
+        System.out.println("这是查询审批流附件返回的json数据:"+ result.toString());
+    }
 }
