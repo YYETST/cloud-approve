@@ -28,16 +28,11 @@ public class BillService extends BaseService{
      * @return
      * @throws RestException
      */
-    public Object getBillContent(String businessKey) throws RestException {
+    public Object getBillContent(String businessKey,List<IFormDataQueryCondition> list) throws RestException {
         IFormDataQueryParam param =new IFormDataQueryParam();
         String[] pks = businessKey.split(":");
         param.setPkBo(pks[1]);
         param.setPkBoins(pks[0]);
-        List<IFormDataQueryCondition> list = new ArrayList<IFormDataQueryCondition>();
-        IFormDataQueryCondition iFormDataQueryCondition = new IFormDataQueryCondition();
-        iFormDataQueryCondition.setColumnCode("ts");
-        iFormDataQueryCondition.setColumnValue("2020-06-04 20:25:38");
-        list.add(iFormDataQueryCondition);
         param.setSqlConditions(list);
         return  getFormService().queryIFormData(param);
     }

@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.junit4.SpringRunner;
 import yonyou.bpm.rest.exception.RestException;
+import yonyou.bpm.rest.request.form.IFormDataQueryCondition;
 import yonyou.bpm.rest.request.form.IFormDataQueryParam;
 import yonyou.bpm.rest.request.form.IFormSubmitData;
 import yonyou.bpm.rest.request.form.IFormSubmitParam;
@@ -46,6 +47,21 @@ class BillTest {
         System.out.println("这是查询审批流附件返回的json数据:"+ result.toString());
     }
 
+    /**
+     * 根据businesskey获取表单内容
+     * @throws RestException
+     */
+    @Test
+    public void getBillContent() throws RestException {
+        String businessKey = "7f9d082cb627468faec1dd2069f67481:2cb072174d3b435ab81225f3be2ca2c6";
+        List<IFormDataQueryCondition> list = new ArrayList<IFormDataQueryCondition>();
+        IFormDataQueryCondition iFormDataQueryCondition = new IFormDataQueryCondition();
+        iFormDataQueryCondition.setColumnCode("ts");
+        iFormDataQueryCondition.setColumnValue("2020-06-04 20:25:38");
+        list.add(iFormDataQueryCondition);
+        ObjectNode obj = (ObjectNode) billService.getBillContent(businessKey,list);
+        System.out.println("这是获取到表单json数据:"+ obj.toString());
+    }
 
     /**
      * 修改表单数据

@@ -14,9 +14,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import yonyou.bpm.rest.exception.RestException;
+import yonyou.bpm.rest.request.form.IFormDataQueryCondition;
 import yonyou.bpm.rest.request.identity.BasicDataResourceParam;
 import yonyou.bpm.rest.request.identity.BasicdataQueryParam;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,7 +84,12 @@ class ApproveListenTest {
     @Test
     public void getBillContent() throws RestException {
         String businessKey = "7f9d082cb627468faec1dd2069f67481:2cb072174d3b435ab81225f3be2ca2c6";
-        ObjectNode obj = (ObjectNode) billService.getBillContent(businessKey);
+        List<IFormDataQueryCondition> list = new ArrayList<IFormDataQueryCondition>();
+        IFormDataQueryCondition iFormDataQueryCondition = new IFormDataQueryCondition();
+        iFormDataQueryCondition.setColumnCode("ts");
+        iFormDataQueryCondition.setColumnValue("2020-06-04 20:25:38");
+        list.add(iFormDataQueryCondition);
+        ObjectNode obj = (ObjectNode) billService.getBillContent(businessKey,list);
         System.out.println("这是获取到表单json数据:"+ obj.toString());
     }
 
