@@ -6,8 +6,12 @@ import yonyou.bpm.rest.BpmRests;
 import yonyou.bpm.rest.FormService;
 import yonyou.bpm.rest.exception.RestException;
 import yonyou.bpm.rest.request.form.FormFieldQueryParam;
+import yonyou.bpm.rest.request.form.IFormDataQueryCondition;
 import yonyou.bpm.rest.request.form.IFormDataQueryParam;
 import yonyou.bpm.rest.request.form.IFormSubmitParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author nishch
@@ -25,7 +29,17 @@ public class BillService extends BaseService{
      * @throws RestException
      */
     public Object getBillContent(String businessKey) throws RestException {
-        return  getFormService().queryIFormData(getPkBoAndBoins(businessKey));
+        IFormDataQueryParam param =new IFormDataQueryParam();
+        String[] pks = businessKey.split(":");
+        param.setPkBo(pks[1]);
+        param.setPkBoins(pks[0]);
+        List<IFormDataQueryCondition> list = new ArrayList<IFormDataQueryCondition>();
+        IFormDataQueryCondition iFormDataQueryCondition = new IFormDataQueryCondition();
+        iFormDataQueryCondition.setColumnCode("ts");
+        iFormDataQueryCondition.setColumnValue("2020-06-04 20:25:38");
+        list.add(iFormDataQueryCondition);
+        param.setSqlConditions(list);
+        return  getFormService().queryIFormData(param);
     }
 
     /**

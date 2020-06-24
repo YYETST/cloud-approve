@@ -85,7 +85,7 @@ class BillTest {
      */
     @Test
     public void getBillParam() throws RestException {
-        ObjectNode result = (ObjectNode) billService.getBillParams("71c1ace9d4a6422f85244d44ee4e673a:bea0303d91b94f91bb71169ec431b5b5");
+        ObjectNode result = (ObjectNode) billService.getBillParams("1aaa2ff042d34e3ea9a1983ec1222fdc:2cb072174d3b435ab81225f3be2ca2c6");
         System.out.println("这是查询表单字段返回的json数据:"+ result.toString());
     }
 

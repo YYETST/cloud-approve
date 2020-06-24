@@ -56,10 +56,10 @@ class ApproveListenTest {
     public void testListen() throws RestException {
         BasicDataResourceParam params = new BasicDataResourceParam();
         params.setCode("haikang");
-        params.setName("海康门卫监听");
-        params.setUrl("http://310l2268a8.wicp.vip/approve/listen");
+        params.setName("测试云审批6192");
+        params.setUrl("http://10.6.255.27/approve/listen");
         //流程id为：租户Id+source
-        params.setProcDefId("iform_3e41d17055");   //---获取方式请看images/3.png
+        params.setProcDefId("iform_5aca65946e");   //---获取方式请看images/3.png
         params.setTenantId(teant);
         params.setSource(source);
         params.setToken(token);
@@ -70,7 +70,7 @@ class ApproveListenTest {
 
     @Test
     public void deleteListen() throws RestException {
-        String id="ec0a040d-9f2f-11ea-9458-9aa2e21290bb";
+        String id="21cbf516-b1d0-11ea-b94f-32c353c262d3";
         boolean result = registerListenService.delete(id);
         System.out.println("这是删除监听返回的数据:"+ result);
     }
@@ -81,7 +81,7 @@ class ApproveListenTest {
      */
     @Test
     public void getBillContent() throws RestException {
-        String businessKey = "754ba83feac74e0cb6eaadda5451f654:598df2358ebf4a6ea5394e939378e4be";
+        String businessKey = "7f9d082cb627468faec1dd2069f67481:2cb072174d3b435ab81225f3be2ca2c6";
         ObjectNode obj = (ObjectNode) billService.getBillContent(businessKey);
         System.out.println("这是获取到表单json数据:"+ obj.toString());
     }
