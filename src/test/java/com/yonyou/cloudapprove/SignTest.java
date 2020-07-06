@@ -11,7 +11,7 @@ import yonyou.bpm.rest.scrt.RestHMacParam;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class Sign {
+class SignTest {
 
     @Value("${rest.token}")
     private  String approveToken;   //用友云审批的验证token
