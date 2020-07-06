@@ -47,6 +47,20 @@ public class FlowService extends BaseService{
     }
 
 
+    /**
+     * 获取发起统计
+     * @param startedBy 友互通id  yhtuserid
+     */
+    public Object getMySendTotal(String startedBy) throws RestException {
+        HistoryService historyService = getHistoryService();
+        HistoricProcessInstancesQueryParam queryParam = new HistoricProcessInstancesQueryParam();
+        queryParam.setStartedBy(startedBy);
+        queryParam.setFinished(false);
+        Object result = historyService.getHistoricProcessInstancesCount(queryParam);
+        return result;
+    }
+
+
 
     public HistoryService getHistoryService(){
         BpmRest bpmRest = BpmRests.getBpmRest(getBaseParam());
