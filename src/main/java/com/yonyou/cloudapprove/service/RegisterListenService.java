@@ -17,10 +17,6 @@ import yonyou.bpm.rest.request.identity.BasicdataQueryParam;
 @Service
 public class RegisterListenService extends BaseService{
 
-
-    //流程结束监听
-    private final static String type = "process_listener";
-
     /**
      * 注册监听流程
      * @param params
@@ -30,7 +26,6 @@ public class RegisterListenService extends BaseService{
     public Object register(BasicDataResourceParam params) throws RestException {
         DefaultIdentityService identityService = new DefaultIdentityService();
         identityService.setBaseParam(getBaseParam());
-        params.setType(type);
         Object result = identityService.insertBasicData(params);
         return result;
     }

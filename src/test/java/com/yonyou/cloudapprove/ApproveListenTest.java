@@ -34,6 +34,8 @@ class ApproveListenTest {
     //访问本系统的token
     private final static String token="dsfdfgagfdgfdaewvdg";
 
+    //流程结束监听
+    private final static String type = "process_listener";
 
     @Autowired
     RegisterListenService registerListenService;
@@ -65,6 +67,7 @@ class ApproveListenTest {
         params.setTenantId(teant);
         params.setSource(source);
         params.setToken(token);
+        params.setType(type);
         ObjectNode object = (ObjectNode)registerListenService.register(params);
         System.out.println("这是注册监听返回的json数据:"+ object.toString());
     }
@@ -72,7 +75,7 @@ class ApproveListenTest {
 
     @Test
     public void deleteListen() throws RestException {
-        String id="21cbf516-b1d0-11ea-b94f-32c353c262d3";
+        String id="56632d39-b1d2-11ea-b96f-1a8e19373b3f";
         boolean result = registerListenService.delete(id);
         System.out.println("这是删除监听返回的数据:"+ result);
     }
