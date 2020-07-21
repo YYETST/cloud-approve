@@ -60,8 +60,6 @@ public class FlowService extends BaseService{
         return result;
     }
 
-
-
     public HistoryService getHistoryService(){
         BpmRest bpmRest = BpmRests.getBpmRest(getBaseParam());
         return bpmRest.getHistoryService();
