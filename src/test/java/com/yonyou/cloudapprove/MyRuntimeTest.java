@@ -15,10 +15,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import yonyou.bpm.rest.exception.RestException;
 import yonyou.bpm.rest.request.RestVariable;
+import yonyou.bpm.rest.request.form.AutoFieldParam;
 import yonyou.bpm.rest.request.form.IFormSubmitData;
 import yonyou.bpm.rest.request.form.IFormSubmitParam;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +46,7 @@ class MyRuntimeTest {
 
 
     /**
-     * 获取表单字段
+     * 获取表单字段  ---只能获取到主表字段，子表获取不到
      */
     @Test
     public void getBillParam() throws RestException {
@@ -69,7 +71,7 @@ class MyRuntimeTest {
     }
 
     /**
-     * 保存表单-并发起流程
+     * 保存表单-并发起流程   ----使用字段id进行保存
      */
     @Test
     public void saveBill() throws RestException {
@@ -83,6 +85,51 @@ class MyRuntimeTest {
         data.setValue("ccccvbb");
         list.add(data);
         parmas.setFormData(list);
+        parmas.setStartProcess(true);
+        ObjectNode result = (ObjectNode) billService.submitIForm(parmas);
+        System.out.println("这是查询表单字段返回的json数据:"+ result.toString());
+    }
+
+
+    /**
+     * 保存表单-并发起流程   ----使用编码进行保存
+     */
+    @Test
+    public void saveBillCode() throws RestException {
+        IFormSubmitParam parmas = new IFormSubmitParam();
+        //TODO:pkbo
+        parmas.setPkBo("ab37e4343de142fe9c386fc7fad32ce4");
+        List<IFormSubmitData> list = new ArrayList<IFormSubmitData>();
+        IFormSubmitData data = new IFormSubmitData();
+        //TODO:主表字段code
+        data.setCode("wb_159253350464467");
+        //TODO:主表字段值
+        data.setValue("ccccvbb");
+        IFormSubmitData data1 = new IFormSubmitData();
+        //TODO:主表字段枚举code
+        data1.setCode("xx_1595633519225473");
+        //字段值
+        //TODO:主表字段枚举值
+        data1.setValue("20200725073118aw4djC5He7");
+        list.add(data);
+        list.add(data1);
+        parmas.setFormData(list);
+        //---------------------------------------------------------子表数据
+        Map<String,List<IFormSubmitParam>> subMap = new HashMap<String,List<IFormSubmitParam>>();
+        List<IFormSubmitParam> subDataParamList = new ArrayList<IFormSubmitParam>();
+        IFormSubmitParam subParam = new IFormSubmitParam();
+        List<IFormSubmitData> subDataList = new ArrayList<IFormSubmitData>();
+        subParam.setFormData(subDataList);
+        subDataParamList.add(subParam);
+        IFormSubmitData subData = new IFormSubmitData();
+        //TODO:子表字段CODE
+        subData.setCode("wb3_1595633519225705");
+        //TODO:子表字段值
+        subData.setValue("1111");
+        subDataList.add(subData);
+        //TODO:key:子表id,value子表数据
+        subMap.put("20200725073131t53pTxKWmV",subDataParamList);
+        parmas.setSubFormMap(subMap);
         parmas.setStartProcess(true);
         ObjectNode result = (ObjectNode) billService.submitIForm(parmas);
         System.out.println("这是查询表单字段返回的json数据:"+ result.toString());
