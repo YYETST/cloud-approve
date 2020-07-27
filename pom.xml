@@ -71,11 +71,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.yonyou.cloud</groupId>
-            <artifactId>auth-sdk-client</artifactId>
-            <version>${auth.sdk.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>3.16</version>
