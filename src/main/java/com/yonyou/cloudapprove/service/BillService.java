@@ -5,6 +5,7 @@ import yonyou.bpm.rest.BpmRest;
 import yonyou.bpm.rest.BpmRests;
 import yonyou.bpm.rest.FormService;
 import yonyou.bpm.rest.exception.RestException;
+import yonyou.bpm.rest.param.BaseParam;
 import yonyou.bpm.rest.request.form.*;
 
 import java.util.ArrayList;
@@ -88,12 +89,19 @@ public class BillService extends BaseService{
      * 保存数据
      * @return
      */
-    public Object submitIForm(IFormSubmitParam parma) throws RestException {
-        return getFormService().submitIForm(parma);
+    public Object submitIForm(String yhtuserid,IFormSubmitParam parma) throws RestException {
+        return getFormService(yhtuserid).submitIForm(parma);
     }
 
     public FormService getFormService(){
         BpmRest bpmRest = BpmRests.getBpmRest(getBaseParam());
+        return bpmRest.getFormService();
+    }
+
+    public FormService getFormService(String yhtuserid){
+        BaseParam param = getBaseParam();
+        param.setOperatorID(yhtuserid);
+        BpmRest bpmRest = BpmRests.getBpmRest(param);
         return bpmRest.getFormService();
     }
 

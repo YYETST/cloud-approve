@@ -75,6 +75,8 @@ class MyRuntimeTest {
      */
     @Test
     public void saveBill() throws RestException {
+        //TODO:友互通用户id
+        String yhtuerid = "0f059088-9c92-4769-a3e7-8f1a341cc3df";
         IFormSubmitParam parmas = new IFormSubmitParam();
         parmas.setPkBo("ab37e4343de142fe9c386fc7fad32ce4");
         List<IFormSubmitData> list = new ArrayList<IFormSubmitData>();
@@ -86,7 +88,7 @@ class MyRuntimeTest {
         list.add(data);
         parmas.setFormData(list);
         parmas.setStartProcess(true);
-        ObjectNode result = (ObjectNode) billService.submitIForm(parmas);
+        ObjectNode result = (ObjectNode) billService.submitIForm(yhtuerid,parmas);
         System.out.println("这是查询表单字段返回的json数据:"+ result.toString());
     }
 
@@ -96,6 +98,8 @@ class MyRuntimeTest {
      */
     @Test
     public void saveBillCode() throws RestException {
+        //TODO:友互通用户id
+        String yhtuerid = "0f059088-9c92-4769-a3e7-8f1a341cc3df";
         IFormSubmitParam parmas = new IFormSubmitParam();
         //TODO:pkbo
         parmas.setPkBo("ab37e4343de142fe9c386fc7fad32ce4");
@@ -131,7 +135,7 @@ class MyRuntimeTest {
         subMap.put("20200725073131t53pTxKWmV",subDataParamList);
         parmas.setSubFormMap(subMap);
         parmas.setStartProcess(true);
-        ObjectNode result = (ObjectNode) billService.submitIForm(parmas);
+        ObjectNode result = (ObjectNode) billService.submitIForm(yhtuerid,parmas);
         System.out.println("这是查询表单字段返回的json数据:"+ result.toString());
     }
 

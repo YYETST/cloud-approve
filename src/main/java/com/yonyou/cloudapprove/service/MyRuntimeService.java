@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.stereotype.Service;
 import yonyou.bpm.rest.*;
 import yonyou.bpm.rest.exception.RestException;
+import yonyou.bpm.rest.param.BaseParam;
 import yonyou.bpm.rest.request.RestVariable;
 import yonyou.bpm.rest.request.category.CategoryQueryParam;
 
@@ -36,14 +37,16 @@ public class MyRuntimeService extends BaseService{
      * 发起流程
      * @return
      */
-    public Object submit(String procDefId, String businessKey, List<RestVariable> variables) throws RestException {
-        return getRuntimeService().startProcessInstanceByKey(procDefId, businessKey,variables);
+    public Object submit(String yhtuserid,String procDefId, String businessKey, List<RestVariable> variables) throws RestException {
+        return getRuntimeService(yhtuserid).startProcessInstanceByKey(procDefId, businessKey,variables);
     }
 
 
 
-    public RuntimeService getRuntimeService(){
-        BpmRest bpmRest = BpmRests.getBpmRest(getBaseParam());
+    public RuntimeService getRuntimeService(String yhtuserid){
+        BaseParam param = getBaseParam();
+        param.setOperatorID(yhtuserid);
+        BpmRest bpmRest = BpmRests.getBpmRest(param);
         return bpmRest.getRuntimeService();
     }
 }
