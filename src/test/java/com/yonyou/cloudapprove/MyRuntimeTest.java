@@ -115,8 +115,15 @@ class MyRuntimeTest {
         //字段值
         //TODO:主表字段枚举值
         data1.setValue("20200725073118aw4djC5He7");
+        IFormSubmitData data2 = new IFormSubmitData();
+        //TODO:主表字段参照code
+        data2.setCode("20200803091729ZmF18FDV8r");
+        //字段值
+        //TODO:主表字段参照name
+        data2.setValue("0f059088-9c92-4769-a3e7-8f1a341cc3df");
         list.add(data);
         list.add(data1);
+        list.add(data2);
         parmas.setFormData(list);
         //---------------------------------------------------------子表数据
         Map<String,List<IFormSubmitParam>> subMap = new HashMap<String,List<IFormSubmitParam>>();
