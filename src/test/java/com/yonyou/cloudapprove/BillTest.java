@@ -64,6 +64,19 @@ class BillTest {
     }
 
     /**
+     * 根据businesskey获取表单内容
+     * @throws RestException
+     */
+    @Test
+    public void getBillAllContent() throws RestException {
+        String pkbo = "503daab7ebb64afb963da36c4e67ca9a";
+        List<IFormDataQueryCondition> list = new ArrayList<IFormDataQueryCondition>();
+        IFormDataQueryCondition iFormDataQueryCondition = new IFormDataQueryCondition();
+        ObjectNode obj = (ObjectNode) billService.getBillAllContent(pkbo,list);
+        System.out.println("这是获取到表单json数据:"+ obj.toString());
+    }
+
+    /**
      * 修改表单数据
      */
     @Test

@@ -36,6 +36,19 @@ public class BillService extends BaseService{
     }
 
     /**
+     * 获取表单所有数据
+     * @param pkbo
+     * @return
+     * @throws RestException
+     */
+    public Object getBillAllContent(String pkbo,List<IFormDataQueryCondition> list) throws RestException {
+        IFormDataQueryParam param =new IFormDataQueryParam();
+        param.setPkBo(pkbo);
+        param.setSqlConditions(list);
+        return  getFormService().queryIFormData(param);
+    }
+
+    /**
      * 获取审批流程附件
      * @return
      */
