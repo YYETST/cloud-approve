@@ -3,11 +3,13 @@ package com.yonyou.cloudapprove.service;
 import org.springframework.stereotype.Service;
 import yonyou.bpm.rest.*;
 import yonyou.bpm.rest.exception.RestException;
+import yonyou.bpm.rest.request.QueryVariable;
 import yonyou.bpm.rest.request.category.CategoryQueryParam;
 import yonyou.bpm.rest.request.historic.HistoricActivityQueryParam;
 import yonyou.bpm.rest.request.historic.HistoricProcessInstancesQueryParam;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -57,6 +59,19 @@ public class FlowService extends BaseService{
         queryParam.setStartedBy(startedBy);
         queryParam.setFinished(false);
         Object result = historyService.getHistoricProcessInstancesCount(queryParam);
+        return result;
+    }
+
+
+    /**
+     * 根据条件获取流程信息
+     */
+    public Object getFlowInfoByOption(Date date) throws RestException {
+        HistoryService historyService = getHistoryService();
+        HistoricProcessInstancesQueryParam queryParam = new HistoricProcessInstancesQueryParam();
+        queryParam.setFinished(true);
+        queryParam.setFinishedAfter(date);
+        Object result = historyService.getHistoricProcessInstances(queryParam);
         return result;
     }
 

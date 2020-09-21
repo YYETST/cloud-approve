@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import yonyou.bpm.rest.exception.RestException;
-import yonyou.bpm.rest.scrt.DigestUtils;
+
+import java.util.Calendar;
+import java.util.Date;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -42,6 +45,18 @@ class FlowTest {
     public void getMySendTotal() throws RestException {
         String yhtuserid = "0f059088-9c92-4769-a3e7-8f1a341cc3df";
         Object obj = flowService.getMySendTotal(yhtuserid);
+        System.out.println("这是获取到表单json数据:"+ obj.toString());
+    }
+
+    /**
+     * 根据条件获取流程信息
+     */
+    @Test
+    public void getInfoByOption() throws RestException {
+        Calendar cal = Calendar.getInstance();
+        cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
+        Date zero = cal.getTime();
+        Object obj = flowService.getFlowInfoByOption(zero);
         System.out.println("这是获取到表单json数据:"+ obj.toString());
     }
 
