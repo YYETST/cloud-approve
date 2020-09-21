@@ -56,7 +56,7 @@ class FlowTest {
         Calendar cal = Calendar.getInstance();
         cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
         Date zero = cal.getTime();
-        Object obj = flowService.getFlowInfoByOption(zero);
+        Object obj = flowService.getFlowInfoByOption(zero,"iform_5aca65946e");
         System.out.println("这是获取到表单json数据:"+ obj.toString());
     }
 

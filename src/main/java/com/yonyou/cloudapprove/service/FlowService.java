@@ -66,11 +66,12 @@ public class FlowService extends BaseService{
     /**
      * 根据条件获取流程信息
      */
-    public Object getFlowInfoByOption(Date date) throws RestException {
+    public Object getFlowInfoByOption(Date date,String processDefinitionKey) throws RestException {
         HistoryService historyService = getHistoryService();
         HistoricProcessInstancesQueryParam queryParam = new HistoricProcessInstancesQueryParam();
         queryParam.setFinished(true);
         queryParam.setFinishedAfter(date);
+        queryParam.setProcessDefinitionKey(processDefinitionKey);
         Object result = historyService.getHistoricProcessInstances(queryParam);
         return result;
     }
