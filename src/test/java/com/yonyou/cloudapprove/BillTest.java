@@ -69,9 +69,12 @@ class BillTest {
      */
     @Test
     public void getBillAllContent() throws RestException {
-        String pkbo = "503daab7ebb64afb963da36c4e67ca9a";
+        String pkbo = "6f3edadfda924146a18fe9357dca60f9";
         List<IFormDataQueryCondition> list = new ArrayList<IFormDataQueryCondition>();
         IFormDataQueryCondition iFormDataQueryCondition = new IFormDataQueryCondition();
+        iFormDataQueryCondition.setColumnCode("rq_160307198384328");
+        iFormDataQueryCondition.setColumnValue("2020-10-18");
+        list.add(iFormDataQueryCondition);
         ObjectNode obj = (ObjectNode) billService.getBillAllContent(pkbo,list);
         System.out.println("这是获取到表单json数据:"+ obj.toString());
     }
